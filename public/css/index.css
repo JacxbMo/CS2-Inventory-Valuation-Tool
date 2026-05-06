@@ -1,0 +1,127 @@
+@media (max-width: 860px) {
+  #taskbar-left {
+    display: none;
+  }
+
+  #taskbar-right {
+    width: 100% !important;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1d2126;
+}
+
+#taskbar-container {
+  width: 100vw;
+  height: 64px;
+  background-color: #1d2126;
+  display: flex;
+}
+
+#taskbar-left {
+  width: 320px;
+  height: 100%;
+  background-color: #21252b;
+  margin-right: 2px;
+}
+
+#taskbar-left p {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  font-size: 1rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+}
+
+#taskbar-right {
+  width: calc(100% - 322px);
+  height: 100%;
+  background-color: #21252b;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+#content-container {
+  height: calc(100vh - 66px);
+  margin-top: 2px;
+  width: 100vw;
+  background-color: #1d2126;
+  display: flex;
+}
+
+#steam-search {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 36px;
+  flex: 1;
+  min-width: 0;
+}
+
+#steam-search i {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+}
+
+#steam-url-input {
+  background-color: #1d2126;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 13px;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0 12px;
+}
+
+#steam-url-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+#steam-search-btn {
+  background-color: rgba(134, 254, 98, 0.15);
+  border: 1px solid rgba(134, 254, 98, 0.3);
+  color: #86fe62;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 12px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+#steam-search-btn:hover {
+  background-color: rgba(134, 254, 98, 0.25);
+}
+
+#empty-state {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#empty-state p {
+  font-family: "Segoe UI", sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.3);
+}

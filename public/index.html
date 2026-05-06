@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CS2 Valuation Tool</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/filter.css" />
+    <link rel="stylesheet" href="./css/dashboard.css" />
+    <link rel="stylesheet" href="./css/inventory.css" />
+    <link rel="stylesheet" href="./css/inventory-grid-item.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <script
+      src="https://kit.fontawesome.com/f250eca22c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./scripts/request-inventory.js"></script>
+    <script src="./scripts/price-chart.js"></script>
+    <script src="./scripts/modal.js"></script>
+    <script src="./scripts/load-inventory.js"></script>
+  </head>
+  <body>
+    <div id="modal-wrapper">
+      <div id="modal-container">
+        <div id="modal-left" class="modal-section">
+          <div id="modal-image-container">
+            <img
+              id="modal-charm-image"
+              src="https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGI6zwki4Uf_a0IWsPGiE7Fhy-I764WbkThD8i5jp6Ttkv6PhY6dSLfmAHW6exuJ_vupWXyy9lhQr_W3UydqudnKeaQ90C8dzEbMCtBTrx4fuYe_q4AKPi95DnCuriy9L6id1o7FVafR7t3g/1280x720?allow_animated=1"
+            />
+            <div id="modal-image-wrapper">
+              <img
+                id="item-image"
+                src="https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiFO0POlV6poL_6sHG6UxPxJvOhuRz39xkQhsTnVzoygdy7Ea1UoCZQkRe9bs0brl9TvN-m0tVHYjY5CyS35jjQJsHhk4o5zcA/1280x720?allow_animated=1"
+                alt=""
+              />
+            </div>
+            <p id="float-text">Float: 0.00000000000</p>
+            <div
+              class="grid-item-float-bar-container"
+              id="modal-float-bar-container"
+            >
+              <i style="" class="fa-solid fa-caret-up"></i>
+              <div
+                style="
+                  width: 7%;
+                  background-color: #86fe62;
+                  border-radius: 4px 0 0 4px;
+                "
+              ></div>
+              <div style="width: 8%; background-color: #fef962"></div>
+              <div style="width: 23%; background-color: #fec262"></div>
+              <div style="width: 7%; background-color: #fe9162"></div>
+              <div
+                style="
+                  width: 55%;
+                  background-color: #fe6262;
+                  border-radius: 0 4px 4px 0;
+                "
+              ></div>
+            </div>
+          </div>
+          <div id="modal-sticker-container">
+            <div class="modal-sticker-item">
+              <img
+                src="https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjM-sJnCW8Vli_YTxuAm2FVLll4Lh8x1T4P6hJqZrJfHAXjXGkr0i4rc_GSjixEh35GSAnNr8IyqSbg8kA8ciRrQJshGm0oqwlCzKr50/330x192?allow_animated=1"
+                alt=""
+              />
+              <p
+                class="modal-sticker-name"
+                style="margin-bottom: 3px; color: white"
+              >
+                Titan
+              </p>
+              <p class="modal-sticker-type" style="margin-bottom: 5px">
+                Holographic
+              </p>
+              <p class="modal-sticker-wear" style="margin-bottom: 5px">0%</p>
+              <p class="modal-sticker-price" style="color: #86fe62">
+                €154,123.32
+              </p>
+            </div>
+            <div class="modal-sticker-item">
+              <img
+                src="https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjM-sJnCW8Vli_YTxuAm2FVLll4Lh8x1T4P6hJqZrJfHAXjXGkr0i4rc_GSjixEh35GSAnNr8IyqSbg8kA8ciRrQJshGm0oqwlCzKr50/330x192?allow_animated=1"
+                alt=""
+              />
+              <p
+                class="modal-sticker-name"
+                style="margin-bottom: 3px; color: white"
+              >
+                Titan
+              </p>
+              <p class="modal-sticker-type" style="margin-bottom: 5px">
+                Holographic
+              </p>
+              <p class="modal-sticker-wear" style="margin-bottom: 5px">0%</p>
+              <p class="modal-sticker-price" style="color: #86fe62">
+                €154,123.32
+              </p>
+            </div>
+            <div class="modal-sticker-item">
+              <img
+                src="https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjM-sJnCW8Vli_YTxuAm2FVLll4Lh8x1T4P6hJqZrJfHAXjXGkr0i4rc_GSjixEh35GSAnNr8IyqSbg8kA8ciRrQJshGm0oqwlCzKr50/330x192?allow_animated=1"
+                alt=""
+              />
+              <p
+                class="modal-sticker-name"
+                style="margin-bottom: 3px; color: white"
+              >
+                Titan
+              </p>
+              <p class="modal-sticker-type" style="margin-bottom: 5px">
+                Holographic
+              </p>
+              <p class="modal-sticker-wear" style="margin-bottom: 5px">0%</p>
+              <p class="modal-sticker-price" style="color: #86fe62">
+                €154,123.32
+              </p>
+            </div>
+            <div class="modal-sticker-item">
+              <img
+                src="https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjM-sJnCW8Vli_YTxuAm2FVLll4Lh8x1T4P6hJqZrJfHAXjXGkr0i4rc_GSjixEh35GSAnNr8IyqSbg8kA8ciRrQJshGm0oqwlCzKr50/330x192?allow_animated=1"
+                alt=""
+              />
+              <p
+                class="modal-sticker-name"
+                style="margin-bottom: 3px; color: white"
+              >
+                Titan
+              </p>
+              <p class="modal-sticker-type" style="margin-bottom: 5px">
+                Holographic
+              </p>
+              <p class="modal-sticker-wear" style="margin-bottom: 5px">0%</p>
+              <p class="modal-sticker-price" style="color: #86fe62">
+                €154,123.32
+              </p>
+            </div>
+            <div class="modal-sticker-item">
+              <img
+                src="https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGJai0ki7VeTHjM-sJnCW8Vli_YTxuAm2FVLll4Lh8x1T4P6hJqZrJfHAXjXGkr0i4rc_GSjixEh35GSAnNr8IyqSbg8kA8ciRrQJshGm0oqwlCzKr50/330x192?allow_animated=1"
+                alt=""
+              />
+              <p
+                class="modal-sticker-name"
+                style="margin-bottom: 3px; color: white"
+              >
+                Titan
+              </p>
+              <p class="modal-sticker-type" style="margin-bottom: 5px">
+                Holographic
+              </p>
+              <p class="modal-sticker-wear" style="margin-bottom: 5px">0%</p>
+              <p class="modal-sticker-price" style="color: #86fe62">
+                €154,123.32
+              </p>
+            </div>
+          </div>
+        </div>
+        <div id="modal-right" class="modal-section">
+          <div id="modal-info-container">
+            <p id="close-modal">✕</p>
+            <p style="font-weight: bold">AK-47 | Neon Rider</p>
+            <p>Minimal Wear</p>
+            <p style="color: #fe6262">Covert</p>
+            <p>Normal</p>
+            <p style="color: #86fe62">€154,123.32</p>
+          </div>
+          <div id="modal-graph-container"></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div id="taskbar-container">
+        <div id="taskbar-left"><p>Counter-Strike 2 Valuation Tool</p></div>
+        <div id="taskbar-right">
+          <div id="steam-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              id="steam-url-input"
+              type="text"
+              placeholder="Enter Steam profile URL..."
+            />
+            <button id="steam-search-btn">Load Inventory</button>
+          </div>
+        </div>
+      </div>
+      <div id="content-container">
+        <div id="content-left">
+          <textarea
+            name=""
+            id="inventory-search"
+            placeholder="Search inventory..."
+          ></textarea>
+          <div id="sort-by">
+            <p>Sort by:</p>
+            <select id="sort-items">
+              <option value="new-old">New → Old</option>
+              <option value="old-new">Old → New</option>
+              <option value="price-high-low">Price ↓</option>
+              <option value="price-low-high">Price ↑</option>
+            </select>
+          </div>
+          <div id="price-filter">
+            <p>Price range:</p>
+
+            <div id="price-slider">
+              <div id="price-slider-track"></div>
+              <div id="price-slider-range"></div>
+
+              <input
+                type="range"
+                id="min-price"
+                min="0"
+                max="1000"
+                value="0"
+                step="1"
+              />
+              <input
+                type="range"
+                id="max-price"
+                min="0"
+                max="1000"
+                value="1500000"
+                step="1"
+              />
+            </div>
+            <div class="price-input-wrapper">
+              <span class="price-symbol">€</span>
+              <input id="price-min-input" type="text" />
+            </div>
+            <div class="price-input-wrapper" style="right: -7px">
+              <span class="price-symbol">€</span>
+              <input id="price-max-input" type="text" />
+            </div>
+          </div>
+          <div id="float-filter">
+            <p>Float range:</p>
+
+            <div id="float-slider">
+              <div id="float-slider-track">
+                <div
+                  style="
+                    width: 7%;
+                    background-color: #86fe62;
+                    border-radius: 4px 0 0 4px;
+                  "
+                ></div>
+                <div style="width: 8%; background-color: #fef962"></div>
+                <div style="width: 23%; background-color: #fec262"></div>
+                <div style="width: 7%; background-color: #fe9162"></div>
+                <div
+                  style="
+                    width: 55%;
+                    background-color: #fe6262;
+                    border-radius: 0 4px 4px 0;
+                  "
+                ></div>
+              </div>
+              <div id="float-slider-range-left"></div>
+              <div id="float-slider-range-right"></div>
+
+              <input
+                type="range"
+                id="min-float"
+                min="0"
+                max="1"
+                value="0"
+                step="0.001"
+              />
+              <input
+                type="range"
+                id="max-float"
+                min="0"
+                max="1"
+                value="1"
+                step="0.001"
+              />
+            </div>
+
+            <div class="float-input-wrapper">
+              <input id="float-min-input" type="text" />
+            </div>
+            <div class="float-input-wrapper" style="right: -7px">
+              <input id="float-max-input" type="text" />
+            </div>
+          </div>
+        </div>
+        <div id="content-right">
+          <div id="empty-state">
+            <p>Please load an inventory.</p>
+          </div>
+          <div id="dashboard-container" style="display: none">
+            <div class="dashboard-item">
+              <div class="dashboard-title-container">
+                <p>Total Value</p>
+                <i class="fa-solid fa-coins"></i>
+              </div>
+              <p class="dashboard-main" id="total-value">$2,323.323.74</p>
+              <p class="dashboard-extra">↑ from last week</p>
+            </div>
+            <div class="dashboard-item">
+              <div class="dashboard-title-container">
+                <p>Most Valuable</p>
+                <i class="fa-solid fa-crown"></i>
+              </div>
+              <p class="dashboard-main" id="most-valuable">$9,634.34</p>
+            </div>
+            <div class="dashboard-item">
+              <div class="dashboard-title-container">
+                <p>Average Change</p>
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </div>
+              <p class="dashboard-main" id="weekly-change">N/A</p>
+              <p class="dashboard-extra">↑ from last week</p>
+            </div>
+            <div class="dashboard-item">
+              <div class="dashboard-title-container">
+                <p>Total Items</p>
+                <i class="fa-solid fa-boxes-stacked"></i>
+              </div>
+              <p class="dashboard-main" id="item-count">459</p>
+            </div>
+          </div>
+          <div id="item-grid" style="display: none"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./scripts/search-inventory.js"></script>
+</html>

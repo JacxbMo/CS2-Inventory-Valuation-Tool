@@ -1,0 +1,25 @@
+#content-right {
+  width: calc(100% - 324px);
+  padding-right: 2px;
+  height: 100%;
+  background-color: #1d2126;
+  overflow-y: scroll;
+}
+
+#content-right::-webkit-scrollbar {
+  width: 14px;
+}
+
+#content-right::-webkit-scrollbar-thumb {
+  background-color: #21252b;
+  width: 12px;
+}
+
+#item-grid {
+  width: 100%;
+  height: calc(100% - 140px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2px;
+  margin: 2px 0 0 0;
+}
