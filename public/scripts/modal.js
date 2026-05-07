@@ -107,6 +107,19 @@ function openModal(
     }
   }
 
+  // inspect link
+  const action = description.actions?.find(
+    (a) => a.name === "Inspect in Game...",
+  );
+  const inspectEl = document.getElementById("modal-inspect-link");
+  if (action && priceData?.certificate) {
+    const inspectUrl = `steam://run/730//+csgo_econ_action_preview%20${priceData.certificate}`;
+    inspectEl.href = inspectUrl;
+    inspectEl.style.display = "";
+  } else {
+    inspectEl.style.display = "none";
+  }
+
   // info panel
   const nameEl = document.querySelector("#modal-info-container p:nth-child(2)");
   nameEl.textContent = itemName + (version ? ` (${version})` : "") || "N/A";

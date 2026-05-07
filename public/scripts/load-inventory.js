@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    window.currentSteamId = steamId;
+
     btn.textContent = "Loading...";
     btn.disabled = true;
 

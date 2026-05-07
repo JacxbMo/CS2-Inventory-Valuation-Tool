@@ -94,6 +94,7 @@ function extractStickerNames(description) {
     )
     .map((name) => `Sticker | ${name}`);
 }
+
 function extractCharmNames(description) {
   const charmInfo = description.descriptions?.find(
     (entry) => entry.name === "keychain_info",
@@ -191,6 +192,7 @@ router.get("/data", async (req, res) => {
         floatValue: floatAdjustment.floatValue,
         floatMultiplier: floatAdjustment.floatMultiplier,
         floatCategory: floatAdjustment.floatCategory,
+        certificate: itemCertificate,
       });
     }
 
@@ -209,25 +211,25 @@ router.get("/data", async (req, res) => {
     const placeholders = allNames.map(() => "?").join(",");
 
     const query = `
-  SELECT 
-    market_hash_name,
-    version,
+      SELECT 
+        market_hash_name,
+        version,
 
-    COALESCE(
-      last_24_hoursavg,
-      last_7_daysavg,
-      last_30_daysavg,
-      last_90_daysavg
-    ) AS selected_price,
+        COALESCE(
+          last_24_hoursavg,
+          last_7_daysavg,
+          last_30_daysavg,
+          last_90_daysavg
+        ) AS selected_price,
 
-    last_24_hoursmin, last_24_hoursmax, last_24_hoursavg, last_24_hoursmedian, last_24_hoursvolume,
-    last_7_daysmin,  last_7_daysmax,  last_7_daysavg,  last_7_daysmedian,  last_7_daysvolume,
-    last_30_daysmin, last_30_daysmax, last_30_daysavg, last_30_daysmedian, last_30_daysvolume,
-    last_90_daysmin, last_90_daysmax, last_90_daysavg, last_90_daysmedian, last_90_daysvolume
+        last_24_hoursmin, last_24_hoursmax, last_24_hoursavg, last_24_hoursmedian, last_24_hoursvolume,
+        last_7_daysmin,  last_7_daysmax,  last_7_daysavg,  last_7_daysmedian,  last_7_daysvolume,
+        last_30_daysmin, last_30_daysmax, last_30_daysavg, last_30_daysmedian, last_30_daysvolume,
+        last_90_daysmin, last_90_daysmax, last_90_daysavg, last_90_daysmedian, last_90_daysvolume
 
-  FROM mytable
-  WHERE market_hash_name IN (${placeholders})
-`;
+      FROM mytable
+      WHERE market_hash_name IN (${placeholders})
+    `;
 
     db.query(query, allNames, (err, dbPrices) => {
       if (err) {
@@ -273,6 +275,7 @@ router.get("/data", async (req, res) => {
             float_value: item.floatValue,
             float_multiplier: item.floatMultiplier,
             float_category: item.floatCategory,
+            certificate: item.certificate,
             ...selectedPrice,
             selected_price: adjustedSelectedPrice.toFixed(2),
           });
@@ -283,10 +286,6 @@ router.get("/data", async (req, res) => {
         uniqueCosmeticNames.includes(price.market_hash_name),
       );
 
-      console.log(
-        "SAMPLE ITEM WITH CHARMS:",
-        finalPrices.find((i) => i.charms?.length),
-      );
       res.json({
         inventory: data,
         prices: finalPrices,
